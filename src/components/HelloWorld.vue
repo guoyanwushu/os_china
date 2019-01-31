@@ -33,10 +33,21 @@
 </template>
 
 <script>
+  import inst from '../api/index'
+  import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created () {
+    axios.get('/api/news_list', {params: {
+      catalog: 1,
+      page: 1,
+      pageSize: 20,
+      access_token: process.env.VUE_APP_TOKEN,
+      dataType: 'json'
+    }})
   }
 }
 </script>

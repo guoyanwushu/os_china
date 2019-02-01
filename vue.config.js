@@ -1,7 +1,6 @@
 module.exports = {
   devServer: {
-    // disableHostCheck: true,
-    host: 'localhost',
+    disableHostCheck: true,
     proxy: {
       '/api': {
         target: 'https://www.oschina.net/action/openapi',

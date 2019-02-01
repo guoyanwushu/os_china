@@ -1,24 +1,10 @@
-import axios from 'axios'
-const inst = axios.create({
-  baseURL: 'https://www.oschina.net/action/openapi',
-  timeout: 2000,
-  data: {
-    access_token: process.env.VUE_APP_TOKEN,
-    dataType: 'json'
-  }
-})
-inst.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  return config;
-}, function (error) {
-  // 对请求错误做些什么
-  return Promise.reject(error);
-});
-inst.interceptors.response.use(function (response) {
-  // 对响应数据做点什么
-  return response;
-}, function (error) {
-  // 对响应错误做点什么
-  return Promise.reject(error);
-});
-export default inst
+import {Get} from './inst.js'
+// 获取新闻列表
+export function getNewsList(catalog = 1, page = 1, pageSize = 10) {
+  return Get('/news_list/api/oo',{params: {
+      catalog,
+      page,
+      pageSize
+    }
+  })
+}

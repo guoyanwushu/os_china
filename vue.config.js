@@ -1,3 +1,7 @@
+const path = require("path")
+function resolve(target) {
+  return path.join(__dirname, target)
+}
 module.exports = {
   devServer: {
     disableHostCheck: true,
@@ -9,5 +13,11 @@ module.exports = {
         }
       }
     }
+  },
+  chainingBehavior: function (config) {
+    config.resolve.alias
+      .set('@api', resolve('src/api'))
+      .set('@component', resolve('src/components'))
+      .set('@views', resolve('src/views'))
   }
 }

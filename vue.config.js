@@ -14,10 +14,10 @@ module.exports = {
       }
     }
   },
-  chainingBehavior: function (config) {
+  chainWebpack: function (config) {
     config.resolve.alias
       .set('@api', resolve('src/api'))
-      .set('@component', resolve('src/components'))
+      .set('@components', resolve('src/components'))
       .set('@views', resolve('src/views'))
   }
 }

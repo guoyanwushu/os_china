@@ -1,10 +1,10 @@
 <template>
   <div class="footer-nav-container">
-    <router-link to="/synthesize"><i class=""></i>综合</router-link>
-    <router-link to="news"><i class=""></i>动弹</router-link>
-    <router-link to="/recommend"><i class=""></i>综合</router-link>
-    <router-link to="/answer"><i class=""></i>发现</router-link>
-    <router-link to="/blog"><i class=""></i>我的</router-link>
+    <router-link to="/synthesize"><i class="iconfont icon-zixun"></i>综合</router-link>
+    <router-link to="/news"><i class="iconfont icon-iconset0353"></i>动弹</router-link>
+    <router-link to="/recommend"><span class="add"><i class="iconfont icon-jia"></i></span></router-link>
+    <router-link to="/answer"><i class="iconfont icon-faxian"></i>发现</router-link>
+    <router-link to="/blog"><i class="iconfont icon-wode"></i>我的</router-link>
   </div>
 </template>
 <script>
@@ -21,10 +21,35 @@ export default {
   right: 0;
   background-color: #fff;
   border-top: 1px solid #ccc;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #edf1e9;
   a {
     flex: 1;
-    line-height: 44px;
     text-align: center;
+    font-size: 12px;
+    color: #666;
+    .add {
+      display: inline-block;
+      background-color: #4fed3f;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      i {
+        line-height: 50px;
+        color: #fff;
+      }
+    }
+    i {
+      display: block;
+      font-size: 32px;
+      line-height: 34px;
+    }
+    &.router-link-active {
+      color: #179512;
+    }
   }
 }
 </style>

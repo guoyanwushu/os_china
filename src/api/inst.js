@@ -2,13 +2,14 @@ import axios from 'axios'
 const inst = axios.create({
   // baseURL: 'https://www.oschina.net/action/openapi',
   baseURL: '/api',
-  timeout: 2000,
+  timeout: 10000,
 })
 const GET_OPTIONS = {
   access_token: process.env.VUE_APP_TOKEN,
   dataType: 'json'
 }
 export function Get(url, data) {
+  console.log(Object.assign({}, data, GET_OPTIONS))
   return inst.get(url, {params: Object.assign({}, data, GET_OPTIONS)})
 }
 inst.interceptors.request.use(function (config) {

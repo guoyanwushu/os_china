@@ -32,11 +32,18 @@ export default new Router({
         component: () => import('./views/synthesize/synthesize-recommend.vue')
       }, {
         path: 'news',
-        component: () => import('./views/synthesize/synthesize-news.vue')
+        component: () => import('./views/synthesize/synthesize-news.vue'),
+        meta: {
+          keepAlive: true
+        }
       }, {
         path: 'questions',
         component: () => import('./views/synthesize/synthesize-questions.vue')
       }]
+    },
+    {
+      path: '/newDetail/:id',
+      component: () => import('./views/NewDetail.vue')
     }
   ]
 })

@@ -11,13 +11,14 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.21",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.3.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-plugin-unit-mocha": "^3.3.0",
     "@vue/cli-service": "^3.3.0",

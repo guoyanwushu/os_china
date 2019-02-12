@@ -1,5 +1,5 @@
 <template>
-  <div class="list-item-container">
+  <div class="list-item-container" @click="linkToDetail">
     <div class="title">
       <img src="" alt="" v-if="headPhoto" class="headPhoto">
       <div v-if="tags">
@@ -10,18 +10,25 @@
     </div>
     <div class="content"></div>
     <div class="infos">
-      <span>@{{author}}</span>
-      <span>{{pubDate}}</span>
-      <div>
-        <i></i>
+      <div class="detail">
+        <span>@{{author}}</span>
+        <span>{{pubDate}}</span>
+      </div>
+      <div class="comment">
+        <i class="iconfont icon-pinglun"></i>
         {{commentCount}}
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {
+  import {getNewDeatil} from "../api";
+
+  export default {
     props: {
+      id: {
+        required: true
+      },
       headPhoto: {
         type: String
       },
@@ -47,6 +54,11 @@ export default {
         type: String,
         required: true
       }
+    },
+    methods: {
+      linkToDetail () {
+        this.$router.push(`/newDetail/${this.id}`);
+      }
     }
 }
 </script>
@@ -57,10 +69,24 @@ export default {
   .list-item-container {
     padding: 15px 15px 15px 0;
     border-bottom: 1px solid #ccc;
+    &:last-child {
+      border-bottom-color: transparent;
+    }
   }
   .infos {
     font-size: 14px;
     padding-top: 15px;
-    color: #666
+    color: #a7a7a7;
+    display: flex;
+    align-items: center;
+    i.iconfont {
+      font-size: 14px;
+    }
+    .detail {
+      flex: 1;
+      span {
+        padding-right: 5px;
+      }
+    }
   }
 </style>

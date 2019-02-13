@@ -3,10 +3,10 @@ import { Indicator, Toast } from 'mint-ui'
 const inst = axios.create({
   // baseURL: 'https://www.oschina.net/action/openapi',
   baseURL: '/api',
-  timeout: 5000,
-  retry: 4,
-  retryDelay: 1000,
-  retryRequests: {}
+  timeout: 1000,
+  retry: 4,  // 超时重连次数
+  retryDelay: 5000,  // 超时重连的间隔时间
+  retryRequests: {} // 超时的url对象，保存有超时重连的次数
 })
 const GET_OPTIONS = {
   access_token: process.env.VUE_APP_TOKEN,
@@ -36,7 +36,7 @@ inst.interceptors.response.use(function (response) {
   const config = err.config;
   if (err.code === 'ECONNABORTED' && err.message.indexOf('timeout')!=-1) {
     inst.defaults.retryRequests[config.url] = inst.defaults.retryRequests[config.url]||1
-    var retryCount = inst.defaults.retryRequests[config.url];
+    let retryCount = inst.defaults.retryRequests[config.url];
     if (retryCount >= config.retry) {
       delete inst.defaults.retryRequests[config.url]
       Toast({
@@ -53,12 +53,19 @@ inst.interceptors.response.use(function (response) {
       });
       inst.defaults.retryRequests[config.url]++;
       config.baseURL = ''
-      setTimeout(function () {
-        inst(config)
-      }, config.retryDelay)
-
+      /*setTimeout(function () {
+        return inst(config)
+      }, config.retryDelay)*/
+      var backoff = new Promise(function(resolve) {
+        setTimeout(function() {
+          resolve();
+        }, config.retryDelay || 1);
+      });
+      // Return the promise in which recalls axios to retry the request
+      return backoff.then(function() {
+        return inst(config);
+      });
     }
-
   } else {
     Toast(err.message);
     return Promise.reject(err);

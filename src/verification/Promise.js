@@ -21,8 +21,3 @@ function realGet() {
   })
 }
 Get().then(function (res) { console.log(`成功操作:${res}`)}, function (err) { console.log("最终请求失败!")})
-realGet().then(function () {
-  resolve("2222")
-}, function () {
-  realGet()
-})

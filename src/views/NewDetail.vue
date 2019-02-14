@@ -7,7 +7,7 @@
     </header>
     <article>
       <h3>{{title}}</h3>
-      <section v-html="body" class="news-content"></section>
+      <section v-html="body" class="news-content" v-preview></section>
     </article>
     <footer class="flex flex-bt flex-mid">
       <input type="text" placeholder="发表评论" class="flex-1">
@@ -20,17 +20,16 @@
 </template>
 <script>
   import {getNewDeatil} from "../api";
-
   export default {
     data () {
       return {
         body: '',
         title: '',
-
       }
     },
     created () {
-      this.getNewDeatil()
+      this.getNewDeatil();
+
     },
     methods: {
       getNewDeatil () {
@@ -38,11 +37,12 @@
           this.body = res.body
           this.title = res.title
         })
-      }
+      },
     },
     beforeRouteUpdate (to, from, next) {
       if (from.params.id !== to.params.id) {
-        this.getNewDeatil()
+        this.getNewDeatil();
+        next();
       }
     }
 }

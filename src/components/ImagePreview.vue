@@ -1,5 +1,5 @@
 <template>
-  <div class="preview-container"  @click="clickHandle" v-if="show">
+  <div class="preview-container"  @click="clickHandle" v-if="show" @scroll.stop ref="container">
     <img :src="url" alt="">
   </div>
 </template>
@@ -15,6 +15,12 @@ export default {
     clickHandle: function () {
       this.show = false
     }
+  },
+  mounted () {
+    console.log(this.$refs.container);
+    this.$refs.container.addEventListener('touchmove', function (event) {
+      event.stopPropagation()
+    })
   }
 }
 </script>

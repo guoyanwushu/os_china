@@ -4,7 +4,7 @@
     <router-link to="/news"><i class="iconfont icon-iconset0353"></i>动弹</router-link>
     <router-link to="/recommend"><span class="add"><i class="iconfont icon-jia"></i></span></router-link>
     <router-link to="/answer"><i class="iconfont icon-faxian"></i>发现</router-link>
-    <router-link to="/blog"><i class="iconfont icon-wode"></i>我的</router-link>
+    <router-link to="/mine"><i class="iconfont icon-wode"></i>我的</router-link>
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
 
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .footer-nav-container {
   display: flex;
   position: fixed;

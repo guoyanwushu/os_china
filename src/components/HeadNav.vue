@@ -13,7 +13,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .head-nav-container {
     display: flex;
     position: fixed;

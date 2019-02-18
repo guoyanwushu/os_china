@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="[classObject, testing, {'happy': isActive,isActive}, 'loving']">
     <header class="flex flex-bt flex-mid">
       <span class="flex flex-mid" @click="$router.go(-1)"><i class="iconfont icon-xiazai6"></i>返回</span>
       <span class="flex-1 center">资讯详情</span>
@@ -25,6 +25,12 @@
       return {
         body: '',
         title: '',
+        isActive: true,
+        classObject: {
+          'gg': true,
+          'smd': false
+        },
+        testing: 'scroma'
       }
     },
     created () {
@@ -96,5 +102,40 @@
   }
   img {
     width: 100%;
+  }
+  .news-content{
+    line-height: 1.8;
+    /deep/ p {
+      padding-bottom: 5px;
+      white-space: normal;
+      word-break: break-all;
+    }
+    /deep/ a {
+      color: #4183c4;
+      white-space: normal;
+      word-break: break-all;
+    }
+    /deep/ img {
+      max-width: 100%;
+    }
+    /deep/ pre {
+      display: block;
+      font-size: 13px;
+      line-height: 1.6;
+      background: #f6f6f6;
+      margin: 16px 0 14px;
+      padding: 14px 15px 12px;
+      border-radius: 3px;
+      border: none;
+      border-left: 3px solid #ccc;
+    }
+    /deep/ ul, ol {
+      margin: 0;
+      padding: 0 0 0 2.5em;
+      list-style-type: disc;
+      li {
+        list-style-type: disc;
+      }
+    }
   }
 </style>

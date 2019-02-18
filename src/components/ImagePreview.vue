@@ -19,7 +19,7 @@ export default {
   mounted () {
     console.log(this.$refs.container);
     this.$refs.container.addEventListener('touchmove', function (event) {
-      event.stopPropagation()
+      event.preventDefault()
     })
   }
 }
@@ -36,9 +36,9 @@ export default {
     img {
       position: absolute;
       top: 50%;
-      left: 0;
-      transform: translate(0, -50%);
-      width: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
     }
     .download {
       position: absolute;

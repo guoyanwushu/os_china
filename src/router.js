@@ -18,6 +18,10 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
+      path: '/mine',
+      component: () => import('./views/mine/mine-index.vue')
+    },
+    {
       path: '/synthesize',
       component: () => import('./views/synthesize/synthesize-index.vue'),
       redirect: '/synthesize/news',
@@ -44,6 +48,10 @@ export default new Router({
     {
       path: '/newDetail/:id',
       component: () => import('./views/NewDetail.vue')
+    },
+    {
+      path: '*',
+      component: () => import('./views/mine/mine-index.vue')
     }
   ]
 })

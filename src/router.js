@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +18,10 @@ export default new Router({
     },
     {
       path: '/mine',
-      component: () => import('./views/mine/mine-index.vue')
+      component: () => import('./views/mine/mine-index.vue'),
+      meta: {
+        needAuth: true
+      }
     },
     {
       path: '/synthesize',
@@ -48,6 +50,10 @@ export default new Router({
     {
       path: '/newDetail/:id',
       component: () => import('./views/NewDetail.vue')
+    },
+    {
+      path: '/login',
+      component: () => import('./views/LoginIn.vue')
     },
     {
       path: '*',

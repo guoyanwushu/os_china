@@ -7,7 +7,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/api': {
-        target: 'https://www.oschina.net/action/openapi',
+        target: 'https://www.oschina.net/action/apiv2',
         pathRewrite : {
           '^/api': ''
         }

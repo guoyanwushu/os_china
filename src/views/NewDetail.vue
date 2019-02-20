@@ -1,13 +1,21 @@
 <template>
-  <div class="container" :class="[classObject, testing, {'happy': isActive,isActive}, 'loving']">
+  <div class="container">
     <header class="flex flex-bt flex-mid">
       <span class="flex flex-mid" @click="$router.go(-1)"><i class="iconfont icon-xiazai6"></i>返回</span>
       <span class="flex-1 center">资讯详情</span>
       <span><i class="iconfont icon-fenxiang share"></i></span>
     </header>
+
     <article>
-      <h3>{{title}}</h3>
-      <section v-html="body" class="news-content" v-preview></section>
+      <h3>{{content.title}}</h3>
+      <div class="author flex flex-mid">
+        <img :src="author.portrait" alt="">
+        <div>
+          <p>{{author.name}}</p>
+          <p>{{content.pub_date}}</p>
+        </div>
+      </div>
+      <section v-html="content.body" class="news-content" v-preview></section>
     </article>
     <footer class="flex flex-bt flex-mid">
       <input type="text" placeholder="发表评论" class="flex-1">
@@ -23,25 +31,24 @@
   export default {
     data () {
       return {
-        body: '',
-        title: '',
-        isActive: true,
-        classObject: {
-          'gg': true,
-          'smd': false
-        },
-        testing: 'scroma'
+        content: {},
+        pub_date:'',
+        author: {}
       }
+    },
+    beforeMount() {
     },
     created () {
       this.getNewDeatil();
-
+    },
+    mounted () {
     },
     methods: {
       getNewDeatil () {
         getNewDeatil(this.$route.params.id).then(res => {
-          this.body = res.body
-          this.title = res.title
+          this.content = res.obj_data;
+          this.author = res.obj_data.author
+          console.log(this.content.title)
         })
       },
     },
@@ -66,6 +73,15 @@
     border-bottom: 1px solid #c5c5c5;
     .share {
       font-size: 23px;
+    }
+  }
+  .author {
+    padding: 10px 0;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
   }
   footer {

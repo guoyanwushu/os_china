@@ -4,6 +4,7 @@ import router from './router_shield'
 import store from './store'
 import MintUI from 'mint-ui'
 import './directives/index'
+import './filters/index'
 import 'mint-ui/lib/style.css'
 import './styles/common.less'
 Vue.config.productionTip = false

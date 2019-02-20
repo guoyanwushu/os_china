@@ -4,6 +4,7 @@ const inst = axios.create({
   // baseURL: 'https://www.oschina.net/action/openapi',
   baseURL: '/api',
   timeout: 1000,
+  allowRetry: false,
   retry: 4,  // 超时重连次数
   retryDelay: 5000,  // 超时重连的间隔时间
   retryRequests: {} // 超时的url对象，保存有超时重连的次数
@@ -34,7 +35,7 @@ inst.interceptors.response.use(function (response) {
   // 对响应错误做点什么
   Indicator.close();
   const config = err.config;
-  if (err.code === 'ECONNABORTED' && err.message.indexOf('timeout')!=-1) {
+  if (err.code === 'ECONNABORTED' && err.message.indexOf('timeout')!=-1 && config.allowRetry) {
     inst.defaults.retryRequests[config.url] = inst.defaults.retryRequests[config.url]||1
     let retryCount = inst.defaults.retryRequests[config.url];
     if (retryCount >= config.retry) {

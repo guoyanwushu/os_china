@@ -25,7 +25,7 @@
       loadMore () {
         this.loading = true;
         getNewsList({pageIndex: this.pageIndex++}).then(res => {
-          this.newsList = this.newsList.concat(res.newslist)
+          this.newsList = this.newsList.concat(res.obj_list)
           this.loading = false
         })
       }

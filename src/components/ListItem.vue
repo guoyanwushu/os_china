@@ -8,15 +8,15 @@
       </div>
       <span><strong>{{title}}</strong></span>
     </div>
-    <div class="content"></div>
+    <div class="content">{{body}}</div>
     <div class="infos">
       <div class="detail">
-        <span>@{{author}}</span>
-        <span>{{pubDate}}</span>
+        <span>@{{author.name}}</span>
+        <span>{{pub_date | timeTrans}}</span>
       </div>
       <div class="comment">
         <i class="iconfont icon-pinglun"></i>
-        {{commentCount}}
+        {{comment_count}}
       </div>
     </div>
   </div>
@@ -39,18 +39,18 @@
         type: String,
         required: true
       },
-      descContent: {
+      body: {
         type: String
       },
       author: {
-        type: String,
+        type: Object,
         required: true
       },
-      commentCount: {
+      comment_count: {
         type: Number,
         default: 0
       },
-      pubDate: {
+      pub_date: {
         type: String,
         required: true
       }
@@ -88,5 +88,9 @@
         padding-right: 5px;
       }
     }
+  }
+  .content {
+    font-size: 14px;
+    color: #999;
   }
 </style>

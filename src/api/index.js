@@ -11,3 +11,5 @@ export function getNewsList({catalog = 1, pageIndex = 1, pageSize = 10}) {
 export function getNewDeatil(id) {
   return Get('/news_detail', {id})
 }
+
+

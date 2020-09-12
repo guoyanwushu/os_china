@@ -1,8 +1,15 @@
 <template>
-  <div v-infinite-scroll="loadMore"
-       infinite-scroll-disabled="loading"
-       infinite-scroll-distance="57">
-    <list-item v-for="item in newsList" v-bind="item" :key="item.id"></list-item>
+  <div class="container">
+    <mt-swipe :auto="4000">
+      <mt-swipe-item>1</mt-swipe-item>
+      <mt-swipe-item>2</mt-swipe-item>
+      <mt-swipe-item>3</mt-swipe-item>
+    </mt-swipe>
+    <div v-infinite-scroll="loadMore"
+         infinite-scroll-disabled="loading"
+         infinite-scroll-distance="57">
+      <list-item v-for="item in newsList" v-bind="item" :key="item.id"></list-item>
+    </div>
   </div>
 </template>
 <script>
@@ -22,12 +29,11 @@
       })
     },*/
     methods: {
-      loadMore () {
+      async loadMore () {
         this.loading = true;
-        getNewsList({pageIndex: this.pageIndex++}).then(res => {
-          this.newsList = this.newsList.concat(res.obj_list)
-          this.loading = false
-        })
+        const res = await getNewsList({pageIndex: this.pageIndex++});
+        this.newsList = this.newsList.concat(res.obj_list)
+        this.loading = false
       }
     },
     components: {

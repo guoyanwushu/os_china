@@ -20,7 +20,7 @@ export default new Router({
       path: '/mine',
       component: () => import('./views/mine/mine-index.vue'),
       meta: {
-        needAuth: true
+        needAuth: false
       }
     },
     {
